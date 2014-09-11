@@ -21,7 +21,7 @@ $(APPLICATION_NAME) : $(OBJ)
 main.o : main.c makearg.h
 	$(CC) $(CFLAGS) -c main.c $(LIBS)
 
-makearg.o : makearg.h
+makearg.o : makearg.c makearg.h
 	$(CC) $(CFLAGS) -c makearg.c $(LIBS)
 
 clean :
