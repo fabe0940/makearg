@@ -30,6 +30,10 @@ int makearg(char* s, char*** args) {
 	argc = 0;
 	for(ch = s; *ch != '\0'; ch++) {
 		argc += isWhitespace(*ch);
+
+		for(; isWhitespace(*ch); ch++) {
+			/* Do Nothing */
+		}
 	}
 	argc++;
 
@@ -42,21 +46,38 @@ int makearg(char* s, char*** args) {
 	ch = s;
 	end = s;
 	for(i = 0; i < argc; i++) {
-		printf("%d\n", i);
+		printf("- i:%d\n", i);
 
+		printf("- searching for whitespace...");
 		for(end = ch; !isWhitespace(*end); end++) {
 			/* Do Nothing */
 		}
+		printf("\tdone!\n");
+
+		printf("- Setting null byte...");
 		*end = '\0';
+		printf("\t\tdone!\n");
 
+		printf("- strlen(ch):%d\n", strlen(ch));
+
+		printf("- Allocating *args[i]...");
 		*args[i] = malloc((strlen(ch) + 1) * sizeof(char));
-		printf("- %s\n", ch);
-		strcpy(*args[i], ch);
+		printf("\tdone!\n");
 
-		ch = end + 1;
-		for(ch = end; isWhitespace(*ch); ch++) {
+		printf("- ch:%s\n", ch);
+		printf("- end:%s\n", (end + 1));
+
+		printf("- Copying string...");
+		strcpy(*args[i], ch);
+		printf("\t\tdone!\n");
+
+		printf("- args[i]:%s\n", *args[i]);
+
+		for(ch = (end + 1); isWhitespace(*ch); ch++) {
 			/* Do Nothing */
 		}
+
+		printf("- ch:%s\n", ch);
 	}
 
 	return argc;

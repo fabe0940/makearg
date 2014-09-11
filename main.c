@@ -14,9 +14,11 @@ int main(int argc, char** argv) {
 
 	num = makearg(argv[1], &strL);
 
+	/*
 	for(i = 0; i < num; i++) {
 		printf("%s\n", strL[i]);
 	}
+	*/
 
 	exit(0);
 }
